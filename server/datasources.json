@@ -1,0 +1,38 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "file": "db.json"
+  },
+  "ZngitDB": {
+    "name": "ZngitDB",
+    "connector": "mysql",
+    "host": "192.168.1.71",
+    "port": 3306,
+    "database": "zngit_db",
+    "user": "db_user",
+    "password": "sunlight"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage"
+  },
+  "ZngitEmail": {
+     "connector": "mail",
+     "transports": [{
+       "type": "smtp",
+       "host": "smtp.mandrillapp.com",
+       "secure": false,
+       "port": 587,
+       "tls": {
+         "rejectUnauthorized": false
+       },
+       "auth": {
+         "user": "username",
+         "pass": "password"
+       }
+     }]
+  }
+}

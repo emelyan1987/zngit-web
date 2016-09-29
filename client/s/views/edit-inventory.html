@@ -1,0 +1,101 @@
+  <div class="zn-header1">
+    <a href="/s/#/inventory">Inventory</a>&nbsp;&nbsp;&nbsp;<img src="./res/images/nav_arrow.png"/>&nbsp;&nbsp;&nbsp;Inventory Details
+  </div>
+  <treasure-overlay-spinner active='spinner.active'>
+  <div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+    <div style="width:98%; max-width:756px; margin:auto;" class="zn-responsive-align">
+
+        <div style="height:15px;"/>
+        <form name="form" novalidate ng-submit="save()">
+          <fieldset ng-disabled="submitting">
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-medium">ITEM NAME</th>
+              <td><input type="text" class="form-control zn-cell-input" name="name" placeholder="Name your rental item" autocomplete="off" required ng-model="rentalItem.name" ></td>
+            </tr>
+            <tr style="height:207px">
+              <th style="vertical-align:top;">ITEM DESCRIPTION</th>
+              <td><textarea class="form-control zn-cell-input" name="text" placeholder="Describe your item" ng-model="rentalItem.text" rows="11"/></td>
+            </tr>
+          </table>
+
+          <div style="height:30px;"/>
+
+          <div>
+            <div class="zn-div-label" align="left">
+              IMAGES
+            </div>
+            <div class="zn-div-input">
+              <div align="left">Images should be 705x514</div>
+              <div>
+                <label for="file-upload" class="zn-button-submit zn-width-100 zn-text-align-center">
+                    <span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">ADD AN IMAGE</span>
+                </label>
+                <input id="file-upload" nv-file-select uploader="uploader" type="file" ng-disabled="!rentalItem.container">
+              </div>
+
+              <div style="padding:15px;" align="center">
+                <div ng-repeat="image in images">
+                <!-- <div ng-repeat="item in uploader.queue"> -->
+                  <button type="button" class="zn-button-link-orange zn-width-100" ng-click="removeImage(image)"><span class="zn-signal-icon">close</span>&nbsp;<span style="vertical-align:top;">REMOVE THIS IMAGE</span></button>
+                  <a class="thumbnail"><img src="{{image}}"/></a>
+                  <!-- <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:31px;"/>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-medium">PRICE PER DAY</th>
+              <td><input type="number" class="form-control zn-cell-input" name="price_per_day" placeholder="Select a price per day" autocomplete="off" required ng-model="rentalItem.price_per_day" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.1"></td>
+            </tr>
+          </table>
+
+          <div style="height:16px;"/>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-medium">PRICE PER HOUR</th>
+              <td><input type="number" class="form-control zn-cell-input" name="price_per_hour" placeholder="Select a price per hour" autocomplete="off" required ng-model="rentalItem.price_per_hour" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.1"></td>
+            </tr>
+          </table>
+
+          <div style="height:16px;"/>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-medium">PARENT CATEGORY</th>
+              <td>
+                <select class="form-control zn-cell-input" ng-model="rentalItem.selectedParentCategory" ng-selected="{{rentalItem.selectedParentCategory}}" ng-options="category.name for category in parentCategories track by category.id" required ng-change="selectParentCategory()">
+                  <option value=''>Select a parent category</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+
+          <div style="height:16px;"/>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-medium">SUB CATEGORY</th>
+              <td>
+                <select class="form-control zn-cell-input" ng-model="rentalItem.category_id" ng-selected="{{rentalItem.category_id}}" ng-options="category.id as category.name for category in subCategories" required>
+                  <option value=''>Select a sub category</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+
+          <div style="height:42px;"/>
+          <input type="submit" class="zn-button-submit zn-width-100" value="SAVE ITEM DETAILS"/>
+          <button type="button" class="zn-button-link-orange zn-width-100" ng-click="remove()" ng-show="!isNewInventory"><span class="zn-signal-icon">close</span>&nbsp;<span style="vertical-align:top;">REMOVE THIS FROM INVENTORY</span></button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  </treasure-overlay-spinner>

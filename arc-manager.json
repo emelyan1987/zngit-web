@@ -1,0 +1,12 @@
+{
+  "ids": {
+    "ManagerHost": 6,
+    "LoadBalancer": 1
+  },
+  "models": {
+    "ManagerHost": {
+      "7df73d4e-0cff-4e23-b5ab-0c633a76652d": "{\"id\":\"7df73d4e-0cff-4e23-b5ab-0c633a76652d\",\"host\":\"54.186.128.146\",\"port\":9891,\"actions\":[\"delete\",\"edit\",\"env-set\",\"env-get\"],\"protocol\":\"http\",\"created\":1460894581430,\"error\":null,\"errorType\":null,\"app\":null,\"processes\":{\"pids\":[]}}"
+    },
+    "LoadBalancer": {}
+  }
+}

@@ -1,0 +1,57 @@
+module.exports = function(app) {
+  var kue = require('kue');
+  var jobs = kue.createQueue();
+
+  jobs.on( 'error', function( err ) {
+    console.log( 'Oops... ', err );
+  });
+
+  function checkWithdrawable (){
+   var job = jobs.create('JobForCheckingWithdrawable');
+   job.save();
+  }
+
+  jobs.process('JobForCheckingWithdrawable', function (job, done){
+   console.log('Job', job.id, 'is done'); //console.log(Date.now()/1000);
+
+    updateWithdrawable();
+
+    function updateWithdrawable() {
+      var beforeTime = 24*60*60;  // before 24 hours booking items
+
+      app.models.BookItem.find({where:{and:[{created_time:{lte:Date.now()/1000-beforeTime}},{charge_id:{neq:null}},{or:[{withdrawable:null},{withdrawable:false}]}]}}, function(err,bookItems){
+        if(err || bookItems.length==0) {
+          done && done();
+        } else {
+
+           function updateBalance(bookItem, callback) { //console.log("BookItem:"); console.log(bookItem);
+             var ds = app.datasources.ZngitDB;
+             var sql = "call zn_update_balance("+bookItem.id+")";
+
+             ds.connector.execute(sql,function(err,response){
+               callback(err,response);
+             });
+           }
+
+
+           function final() { console.log('Done'); done && done(); }
+
+           function series(bookItem) { //console.log("Series");
+             if(bookItem) { //console.log(bookItem);
+               updateBalance(bookItem, function(err, result) {
+                 return series(bookItems.shift());
+               });
+             } else {
+               return final();
+             }
+           }
+           series(bookItems.shift());
+
+        }
+
+      });
+    }
+  });
+
+  setInterval(checkWithdrawable, 30*60*1000);//30*60*1000
+};

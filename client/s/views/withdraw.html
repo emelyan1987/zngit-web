@@ -1,0 +1,24 @@
+<div class="zn-header1" style="vertical-align:bottom;">
+  Manage Balance
+
+</div>
+
+<treasure-overlay-spinner active='spinner.active'>
+<div class="zn-content" ng-style="resizeWithOffset(122)" resize align="center">
+  <div style="width:100%;max-width:679px;">
+    <div style="background-color:white; padding-top:15px; padding-bottom:10px; position:relative;">
+      <form name="form" validate ng-submit="withdraw()">
+        <div class="zn-label-sub-title">ACCOUNT AVAILABLE BALANCE</div>
+        <div class="zn-label-title" style="margin-top:10px;">{{balance|currency}}</div>
+        <div style="padding:10px;"><input type="submit" class="zn-button-submit zn-width-100" value="WITHDRAW MONEY" ng-disabled="{{balance==0}}"/></div>
+        <div class="zn-label-description-small">Withdraw to {{shop.account_name}} Account Ending in {{shop.account_number|last4}}</div>
+        <div class="zn-stripe-logo"><img src="./res/images/stripe.png" class="zn-image-button"/></div>
+    </form>
+    </div>
+    <div style="height:10px;"/>
+    <div class="zn-grid" ui-grid="gridOptions" ui-grid-auto-resize ng-style="getGridHeight()" align="left">
+
+    </div>
+  </div>
+</div>
+</treasure-overlay-spinner>

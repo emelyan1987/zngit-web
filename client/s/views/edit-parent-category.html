@@ -1,0 +1,62 @@
+  <div class="zn-header1">
+    <a href="/s/#/categories">Manage Categories</a>&nbsp;&nbsp;&nbsp;<img src="./res/images/nav_arrow.png"/>&nbsp;&nbsp;&nbsp;Add Parent Category
+  </div>
+  <treasure-overlay-spinner active='spinner.active'>
+
+  <div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+    <div style="width:98%; max-width:756px; margin:auto;" align="left">
+
+        <div style="height:15px;"/>
+        <form name="form" novalidate ng-submit="save()">
+          <fieldset>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-standard">CATEGORY NAME</th>
+              <td><input type="text" class="form-control zn-cell-input" name="name" placeholder="Name your category" autocomplete="off" required ng-model="category.name" ></td>
+            </tr>
+            <tr>
+              <th>SUB TEXT</th>
+              <td><input type="text" class="form-control zn-cell-input" name="text" placeholder="Add your sub category text" autocomplete="off" required ng-model="category.text" ></td>
+            </tr>
+          </table>
+
+          <div style="height:30px;"/>
+
+          <div>
+            <div class="zn-div-label">
+              IMAGES
+            </div>
+            <div class="zn-div-input">
+              <div>Images should be 705x433</div>
+              <div>
+                <label for="file-upload" class="zn-button-submit zn-width-100 zn-text-align-center">
+                    <span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">ADD AN IMAGE</span>
+                </label>
+                <input id="file-upload" nv-file-select uploader="uploader" type="file" ng-disabled="!category.container">
+              </div>
+
+              <div style="padding:15px;" align="center">
+                <div ng-repeat="image in images">
+                <!-- <div ng-repeat="item in uploader.queue"> -->
+                  <button type="button" class="zn-button-link-orange zn-width-100" ng-click="removeImage(image)"><span class="zn-signal-icon">close</span>&nbsp;<span style="vertical-align:top;">REMOVE THIS IMAGE</span></button>
+                  <a class="thumbnail">
+                    <!-- <ui-image data-src="{{image}}"></ui-image> -->
+                    <img src="{{image}}"/>
+                  </a>
+                  <!-- <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:31px;"/>
+
+          <input type="submit" class="zn-button-submit zn-width-100" value="SAVE CATEGORY"/>
+          <button type="button" class="zn-button-link-orange zn-width-100" ng-click="remove()" ng-show="!isNewCategory"><span class="zn-signal-icon">close</span>&nbsp;<span style="vertical-align:top;">REMOVE THIS CATEGORY</span></button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  </treasure-overlay-spinner>

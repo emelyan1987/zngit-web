@@ -1,0 +1,15 @@
+<div class="zn-header1" style="vertical-align:bottom;">
+  {{title}}
+<input type="text" class="zn-search-input form-control" placeholder="Search for a customer" ng-change="refreshData()" ng-model="searchText"/>
+
+</div>
+
+<treasure-overlay-spinner active='spinner.active'>
+<div class="zn-content" ng-style="resizeWithOffset(122)" resize align="center">
+  <div style="width:100%;max-width:800px;">
+    <div class="zn-grid" ui-grid="gridOptions" ui-grid-auto-resize ng-style="getGridHeight()" align="left">
+
+    </div>
+  </div>
+</div>
+</treasure-overlay-spinner>

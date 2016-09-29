@@ -1,0 +1,31 @@
+<div class="zn-dialog" align="center">
+  <div class="zn-title">Confirmation an address</div>
+
+  <div style="width:100%; max-width:736px;">
+    <div style="height:350px;overflow-y:auto;">
+      <div class="row" style="width:98%;border-top:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;padding-top:23.5px;padding-bottom:23.5px;" ng-repeat="address in searchedAddresses track by $index">
+        <div class="col-md-9" style="text-align:left;">
+          <table>
+            <tr>
+              <td style="vertical-align:top;"><span class="zn-label-highlight zn-text-align-left">{{$index+1}}.</span></td>
+              <td>
+                <span class="zn-word-wrap zn-label-highlight zn-text-align-left">
+                  {{address.street}}</br>
+                  {{address.city}}, {{address.state}} {{address.zip}}</br>
+                  {{address.country}}
+                </span>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="col-md-3" style="vertical-align:middle;padding-top:20px;">
+          <input type="button" class="zn-button-submit-small zn-width-100" value="SELECT ADDRESS" ng-click="selectAddress($index)"/>
+        </div>
+      </div>
+    </div>
+    <div style="height:35px;"/>
+    <input type="button" class="zn-button-submit zn-width-100" value="CANCEL" ng-click="closeThisDialog()"/>
+    <div style="height:20px;"/>
+  </div>
+</div>

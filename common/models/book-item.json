@@ -1,0 +1,134 @@
+{
+  "name": "BookItem",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_book_item"
+    }
+  },
+  "properties": {
+    "quantity": {
+      "type": "number",
+      "required": true
+    },
+    "card_last4": {
+      "type": "string",
+      "required": true
+    },
+    "card_brand": {
+      "type": "string",
+      "required": true
+    },
+    "pickup_time": {
+      "type": "number",
+      "required": true,
+      "comments": "minutes from 00:00 AM"
+    },
+    "pickup_date": {
+      "type": "string",
+      "required": true,
+      "comments": "YYYY-MM-dd"
+    },
+    "return_date": {
+      "type": "string",
+      "comments": "YYYY-MM-dd"
+    },
+    "rental_hours": {
+      "type": "number",
+      "comments": "hours"
+    },
+    "type": {
+      "type": "number",
+      "required": true,
+      "comments": "0: Hourly, 1: Daily"
+    },
+    "amount": {
+      "type": "number",
+      "dataType": "double",
+      "dataPrecision": 2,
+      "required": false,
+      "comments": "The amount paid actually"
+    },
+    "charge_id": {
+      "type": "string",
+      "required": false,
+      "comments": "The stripe charge id"
+    },
+    "withdrawable": {
+      "type": "boolean"
+    },
+    "is_refunded": {
+      "type": "boolean"
+    },
+    "created_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    },
+    "updated_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    }
+  },
+
+  "validations": [],
+  "relations": {
+    "renter": {
+      "type": "belongsTo",
+      "model": "Actor",
+      "foreignKey": "renter_id"
+    },
+    "rentalItem": {
+      "type": "belongsTo",
+      "model": "RentalItem",
+      "foreignKey": "item_id",
+      "as": "item"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": ["list","myBookingItems"]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": [
+        "updateAttributes",
+        "destroyById",
+        "refund"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": ["request","createStripeToken"]
+    }
+  ],
+  "methods": {}
+}

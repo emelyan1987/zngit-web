@@ -1,0 +1,29 @@
+  <treasure-overlay-spinner active='spinner.active'>
+
+  <div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+    <div style="width:98%; max-width:756px;">
+
+        <div style="height:15px;"/>
+        <form name="form" novalidate ng-submit="save()">
+          <fieldset>
+
+          <table class="zn-table zn-width-100">
+            <tr>
+              <th class="zn-standard">EMAIL*</th>
+              <td><input type="text" class="form-control zn-cell-input" name="name" placeholder="Your Email" autocomplete="off" required ng-model="user.email " ></td>
+            </tr>
+            <tr>
+              <th>PASSWORD*</th>
+              <td><input type="password" class="form-control zn-cell-input" name="text" placeholder="Your Password" autocomplete="off" required ng-model="user.password" ></td>
+            </tr>
+          </table>
+
+          <div style="height:31px;"/>
+
+          <input type="submit" class="zn-button-submit zn-width-100" value="SAVE CHANGES"/>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  </treasure-overlay-spinner>

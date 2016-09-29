@@ -1,0 +1,40 @@
+{
+  "name": "Customer",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_customer"
+    }
+  },
+  "properties": {
+    "created_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    },
+    "updated_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "shop": {
+      "type": "belongsTo",
+      "model": "Shop",
+      "foreignKey": "shop_id"
+    },
+    "customer": {
+      "type": "belongsTo",
+      "model": "Actor",
+      "foreignKey": "customer_id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

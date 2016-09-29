@@ -1,0 +1,207 @@
+{
+  "name": "Shop",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_shop"
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "length": 50
+    },
+    "phone": {
+      "type": "string",
+      "length": 50
+    },
+    "email": {
+      "type": "string",
+      "length": 50
+    },
+    "account_name": {
+      "type": "string",
+      "length": 50,
+      "comments": "Bank Name"
+    },
+    "account_number": {
+      "type": "string",
+      "length": 50,
+      "comments": "bank account number"
+    },
+    "account_type": {
+      "type": "string",
+      "length": 1,
+      "comments": "Bank account type 'C':corporation, 'I':individual"
+    },
+    "account_code": {
+      "type": "string",
+      "length": 50,
+      "comments": "SSN or EIN(TaxId)"
+    },
+    "routing_number": {
+      "type": "string",
+      "comments": "Bank routing number"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "close_time_fri": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_mon": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_sat": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_sun": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_thu": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_tue": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "close_time_wed": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_fri": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_mon": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_sat": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_sun": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_thu": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_tue": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "open_time_wed": {
+      "type": "number",
+      "comments": "minutes from 00:00 AM"
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "created_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    },
+    "updated_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "address": {
+      "type": "embedsOne",
+      "model": "Address",
+      "property": "address",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "owner": {
+      "type": "belongsTo",
+      "model": "Actor",
+      "foreignKey": "owner_id"
+    },
+    "rentalItems": {
+      "type": "hasMany",
+      "model": "RentalItem",
+      "foreignKey": "shop_id"
+    },
+    "customers": {
+      "type": "hasMany",
+      "model": "Actor",
+      "foreignKey": "shop_id",
+      "through": "Customer",
+      "keyThrough": "customer_id"
+    },
+    "balance": {
+      "type": "hasOne",
+      "model": "Balance",
+      "foreignKey": "shop_id"
+    },
+    "withdraws": {
+      "type": "hasMany",
+      "model": "Withdraw",
+      "foreignKey": "shop_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": [
+        "upsert",
+        "destroyById",
+        "updateAttributes"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "ShopOwner",
+      "permission": "ALLOW",
+      "property": [
+        "upsert",
+        "updateAttributes"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": ["create","validateBankAccountData"]
+    }
+  ],
+  "methods": {}
+}

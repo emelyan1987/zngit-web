@@ -1,0 +1,27 @@
+<div class="zn-header1">
+  Inventory
+</div>
+<treasure-overlay-spinner active='spinner.active'>
+
+<div class="zn-content" align="center" ng-style="resizeWithOffset(122)" resize>
+  <div style="max-width:883px;" class="zn-responsive-align">
+    <button type="button" class="zn-button-submit zn-width-100" ng-click="gotoAdd()"><span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">ADD INVENTORY ITEM</span></button>
+    <div style="height:15px;"/>
+      <div>
+      <!-- <div style="height:{{contentHeight}}px;overflow-y:auto;padding-right:20px;"> -->
+        <div ng-repeat="n in [] | range:items.length" ng-switch="$index%3">
+            <div class="row" ng-switch-when="0">
+              <div class="col-sm-4" ng-show="items[n]!=null"><div ng-click="gotoDetails(items[n])" class="zn-thumbnail"><img title="{{items[n].price_per_day|currency}}/day, {{items[n].price_per_hour|currency}}/hour" src="{{items[n].images.length>0?items[n].images[0].url:'res/images/placeholder.png'}}"><div>{{items[n].name}}</div></div></div>
+              <div class="col-sm-4" ng-show="items[n+1]!=null"><div ng-click="gotoDetails(items[n+1])" class="zn-thumbnail"><img title="{{items[n+1].price_per_day|currency}}/day, {{items[n+1].price_per_hour|currency}}/hour" src="{{items[n+1].images.length>0?items[n+1].images[0].url:'res/images/placeholder.png'}}"><div>{{items[n+1].name}}</div></div></div>
+              <div class="col-sm-4" ng-show="items[n+2]!=null"><div ng-click="gotoDetails(items[n+2])" class="zn-thumbnail"><img title="{{items[n+2].price_per_day|currency}}/day, {{items[n+2].price_per_hour|currency}}/hour" src="{{items[n+2].images.length>0?items[n+2].images[0].url:'res/images/placeholder.png'}}"><div>{{items[n+2].name}}</div></div></div>
+
+                <!-- <div class="col-sm-4" ng-show="items[n]!=null"><div ng-click="gotoDetails(items[n])" class="zn-thumbnail"><ui-image data-src="{{items[n].images.length>0?items[n].images[0].url:'res/images/placeholder.png'}}" data-title="{{items[n].price_per_day|currency}}/day, {{items[n].price_per_hour|currency}}/hour"></ui-image><div>{{items[n].name}}</div></div></div>
+                <div class="col-sm-4" ng-show="items[n+1]!=null"><div ng-click="gotoDetails(items[n+1])" class="zn-thumbnail"><ui-image data-src="{{items[n+1].images.length>0?items[n+1].images[0].url:'res/images/placeholder.png'}}" data-title="{{items[n+1].price_per_day|currency}}/day, {{items[n+1].price_per_hour|currency}}/hour"></ui-image><div>{{items[n+1].name}}</div></div></div>
+                <div class="col-sm-4" ng-show="items[n+2]!=null"><div ng-click="gotoDetails(items[n+2])" class="zn-thumbnail"><ui-image data-src="{{items[n+2].images.length>0?items[n+2].images[0].url:'res/images/placeholder.png'}}" data-title="{{items[n+2].price_per_day|currency}}/day, {{items[n+2].price_per_hour|currency}}/hour"></ui-image><div>{{items[n+2].name}}</div></div></div>
+              -->
+           </div>
+        </div>
+      </div>
+  </div>
+</div>
+</treasure-overlay-spinner>

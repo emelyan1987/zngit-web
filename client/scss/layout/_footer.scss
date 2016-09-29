@@ -1,0 +1,120 @@
+#footer {
+	background: #4c4c4c;
+	padding: 31px 0;
+	>.container-large {
+		@include media('>=tablet') {
+			overflow: hidden;
+			padding: 0 11px;
+		}
+	} 
+}
+
+.footer-box {
+	@include media('>=tablet') {
+		float: left;
+		margin: 0 24px 0 0;
+	}
+}
+
+.footer-logo {
+	width: 105px;
+	margin: 0 auto 10px;
+	a {
+		display: block;
+	}
+	img {
+		vertical-align: top;
+	}
+}
+
+.copyright {
+	@include font(10px,12px);
+	color: $white;
+	text-align: center;
+	margin: 0 0 34px;
+	@include media('>=tablet') {
+		margin: 0 0 10px;
+		text-align: left;
+	}
+}
+
+.navigation {
+	margin: 0 0 6px;
+	@include media('>=tablet') {
+		float: right;
+		padding: 13px 0 0;
+	}
+	ul {
+		@extend %listreset;
+		overflow: hidden;
+		li {
+			@include font(13px,15px);
+			float: left;
+			width: 50%;
+			text-align: center;
+			margin: 0 0 15px;
+			@include media('>=phone') {
+				width: 25%;
+				margin: 0 0 35px;
+			}
+			@include media('>=tablet') {
+				width: auto;
+				margin: 0 10px;
+			}
+			@include media('>=widescreen') {
+				margin: 0 20px;
+			}
+		}
+		a {
+			@include transition(color);
+			color: $white;
+			&:hover {
+				color: $green;
+			}
+		}
+	}
+}
+
+.social-links {
+	@extend %listreset;
+	@include font(0,0);
+	letter-spacing: -4px;
+	text-align: center;
+	@include media('>=tablet') {
+		float: left;
+		padding: 6px 0 0;
+	}
+	li {
+		@include display(inline-block,top);
+		letter-spacing: normal;
+		margin: 0 8px;
+		@include media('>=tablet') {
+			float: left;
+		}
+	}
+	a {
+		@include transition(color);
+		display: block;
+		color: $white;
+		position: relative;
+		&:hover {
+			color:$green;
+		}
+		&:after {
+			@extend .icon-fonts;
+			content: "\e903";
+			font-size: 20px;
+			color: inherit;
+		}
+	}
+	.faceboock {
+		&:after {
+			content: "\e904";
+		}
+	}
+	.twitter {
+		&:after {
+			content: "\e905";
+		}
+	}
+}

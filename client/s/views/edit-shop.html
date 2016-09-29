@@ -1,0 +1,432 @@
+<div class="zn-header1">
+  Settings
+</div>
+
+<treasure-overlay-spinner active='spinner.active'>
+
+<div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+  <div style="width:100%; max-width:755px; padding:5px 5px;" class="zn-responsive-align">
+
+    <form name="form" validate ng-submit="save()">
+      <fieldset>
+        <div style="height:13px;"/>
+
+        <table class="zn-table zn-width-100">
+          <tr>
+            <th style="width:120px;">STORE NAME*</th>
+            <td><input type="text" class="form-control zn-cell-input" name="name" placeholder="Name your shop" autocomplete="off" required ng-model="shop.name" ></td>
+          </tr>
+          <tr style="height:75.5px;line-height:24px;">
+            <th>SHOP ADDRESS*</th>
+            <td style="padding-top:15px;padding-bottom:15px;">
+              <span class="zn-word-wrap zn-label-highlight zn-text-align-left">
+                {{shop._address.street}}</br>
+                {{shop._address.city}},  {{shop._address.state}} {{shop._address.zip}}</br>
+                {{shop._address.country}}</br></br>
+              </span>
+              <button type="button" class="zn-button-submit-small zn-width-100" ng-dialog="views/input-address.html" ng-dialog-controller="InputAddressController" ng-dialog-scope="this" ng-dialog-data="{{shop._address}}"	ng-dialog-class="ngdialog-theme-default zn-dialog-theme"	ng-dialog-show-close="false"><span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">EDIT ADDRESS</span></button>
+            </td>
+          </tr>
+          <tr>
+            <td class="zn-status-display zn-text-align-right" colspan="2">
+              <div ng-show="form.$submitted || form.name.$touched">
+                <span ng-show="form.name.$error.required">Store name required.</span>
+                <span ng-show="form.address.$error.required">Shop address required.</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div style="height:60px;"/>
+
+        <div style="width:100%;margin-left:10px;">
+          <div class="zn-label-sub-title zn-text-align-left">STORE HOURS</div>
+          <div class="zn-label-description zn-text-align-left">Check the box if the store is open on that day.</div>
+
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="monday" ng-model="monday"/><span class="zn-label-orange" style="padding-left:19px;">MONDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px">OPENING TIME</th>
+                  <td>
+                    <div ng-show="monday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_mon" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_mon">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_mon">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="monday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="monday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_mon" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_mon">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_mon">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="monday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="height:38px;"/>
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="tuesday" ng-model="tuesday"/><span class="zn-label-orange" style="padding-left:19px;">TUESDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="tuesday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_tue" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_tue">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_tue">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="tuesday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="tuesday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_tue" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_tue">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_tue">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="tuesday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="height:38px;"/>
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="wednesday" ng-model="wednesday"/><span class="zn-label-orange" style="padding-left:19px;">WEDNESDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="wednesday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_wed" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_wed">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_wed">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="wednesday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="wednesday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_wed" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_wed">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_wed">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="wednesday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="height:38px;"/>
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="thursday" ng-model="thursday"/><span class="zn-label-orange" style="padding-left:19px;">THURSDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="thursday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_thu" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_thu">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_thu">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="thursday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="thursday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_thu" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_thu">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_thu">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="thursday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="height:38px;"/>
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="friday" ng-model="friday"/><span class="zn-label-orange" style="padding-left:19px;">FRIDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="friday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_fri" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_fri">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_fri">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="friday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="friday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_fri" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_fri">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_fri">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="friday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="height:38px;"/>
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="saturday" ng-model="saturday"/><span class="zn-label-orange" style="padding-left:19px;">SATURDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="saturday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_sat" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_sat">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_sat">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="saturday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="saturday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_sat" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_sat">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_sat">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="saturday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div style="height:38px;"/>
+
+          <div style="max-width:597px;" class="row">
+            <div class="col-md-3" style="margin-top:15px;text-align:left;">
+              <input type="checkbox" class="" name="sunday" ng-model="sunday"/><span class="zn-label-orange" style="padding-left:19px;">SUNDAY</span>
+            </div>
+            <div class="col-md-9" style="margin-top:5px;">
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">OPENING TIME</th>
+                  <td>
+                    <div ng-show="sunday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.open_time_sun" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.open_time_sun">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.open_time_sun">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="sunday">Select an opening time</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="height:16px;"/>
+              <table class="zn-table zn-width-100">
+                <tr>
+                  <th style="width:110px;">CLOSING TIME</th>
+                  <td>
+                    <div ng-show="sunday">
+                      <!-- <input type="time" class="form-control zn-cell-input" ng-model="shop.close_time_sun" /> -->
+                      <select class="form-control zn-cell-input" ng-model="shop.close_time_sun">
+                        <option style="height:30px;" ng-repeat="time in times" value="{{time}}" ng-selected="time == shop.close_time_sun">{{time | date:' h:mm a'}}</option>
+                      </select>
+                    </div>
+                    <div ng-hide="sunday">Select an closing time</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div style="height:38px;"/>
+        <div class="row" style="max-width:600px;padding:15px;">
+            <div class="zn-div-label col-md-3">
+              TIME ZONE
+            </div>
+            <div class="zn-div-input col-md-9">
+              <div style="width:100%;" ng-init="translations.placeholder = 'Select a timezone for your hours'">
+                  <timezone-selector
+                      ng-model="shop.timezone"
+                      translations="translations"
+                      display-utc="true"
+                      sort-by="offset"
+                      name="timezone"
+                      required
+                      width="100%">
+                  </timezone-selector>
+              </div>
+            </div>
+        </div>
+      <div style="height:54px;"/>
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:174px;">STORE PHONE*</th>
+          <td><input type="text" class="form-control zn-cell-input" name="phone" placeholder="Your Store's Phone Number" autocomplete="off" required ng-model="shop.phone" ></td>
+        </tr>
+        <tr>
+          <th>STORE EMAIL ADDRESS</th>
+          <td><input type="email" class="form-control zn-cell-input" name="email" placeholder="Your Store's Email Address" autocomplete="off" ng-model="shop.email" ></td>
+        </tr>
+        <tr>
+          <td class="zn-status-display zn-text-align-right" colspan="2">
+            <div ng-show="form.$submitted || form.phone.$touched || form.email.$touched">
+              <span ng-show="form.phone.$error.required">Store phone number required.</span>
+              <span ng-show="form.email.$error.email">This is not a valid email.</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div style="height:49px;"/>
+      <div class="zn-label-sub-title zn-text-align-left">STORE PAYMENT DETAILS</div>
+      <div class="zn-label-description zn-text-align-left">In order to receive payments from customers, we’ll need to collect your bank account routing and account information.</div>
+
+      <div style="height:22px;"/>
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:150px;">ACCOUNT NUMBER*</th>
+          <td><input type="text" class="form-control zn-cell-input" name="account_number" placeholder="Your Bank Account Number" autocomplete="off" required ng-model="shop.account_number" ></td>
+        </tr>
+        <tr>
+          <th>ROUTING NUMBER*</th>
+          <td><input type="text" class="form-control zn-cell-input" name="routing_number" placeholder="Your Routing Number" autocomplete="off" required ng-model="shop.routing_number" ></td>
+        </tr>
+        <tr>
+          <td class="zn-status-display zn-text-align-right" colspan="2">
+            <div ng-show="form.$submitted || form.account_number.$touched || form.routing_number.$touched">
+              <span ng-show="form.account_number.$error.required">Account number required.</span>
+              <span ng-show="form.account_number.$error.number">Account number is not a valid number.</span>
+              <span ng-show="form.routing_number.$error.required">Routing number required.</span>
+              <span ng-show="form.routing_number.$error.number">Routing number is not a valid number.</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div style="height:13px;"/>
+      <div class="zn-label-description zn-text-align-left">Currently connected to bank account ending in 8372.</div>
+      <div style="height:13px;"/>
+      <div><img src="./res/images/stripe.png" class="zn-image-button"/></div>
+      <div style="height:20px;" />
+
+      <div class="row" align="left">
+        <div class="col-md-4"><input type="radio" ng-model="shop.account_type" value="C">&nbsp;&nbsp;<span class="zn-label-description">This is a corporate account</span></div>
+        <div class="col-md-8"><input type="radio" ng-model="shop.account_type" value="I">&nbsp;&nbsp;<span class="zn-label-description">This is an individual account</span></div>
+      </div>
+
+      <div style="height:20px;"/>
+      <table class="zn-table zn-width-100" style="max-width:467px;">
+        <tr>
+          <th style="width:130px;">{{shop.account_type=='C'?'EIN':'SOCIAL SECURITY'}}</th>
+          <td><input type="password" class="form-control zn-cell-input" name="account_code" placeholder="{{shop.account_type=='C'?'Input your EIN':'Input your SSN'}}" autocomplete="off" required ng-model="shop.account_code" ></td>
+        </tr>
+      </table>
+
+      <div style="height:73px;"/>
+
+      <div class="zn-label-sub-title zn-text-align-left">CREATE A LOGIN</div>
+      <div class="zn-label-description zn-text-align-left">Add your email and password so you can sign into the website.</div>
+
+      <div style="height:34px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:95px;">NAME*</th>
+          <td><input type="text" class="form-control zn-cell-input" name="userFullName" placeholder="Your Full Name" autocomplete="off" required ng-model="user.fullname" ></td>
+        </tr>
+        <tr>
+          <th style="width:95px;">EMAIL*</th>
+          <td><input type="text" class="form-control zn-cell-input" name="userEmail" placeholder="Your Email" autocomplete="off"  ng-model="user.email"  required></td>
+        </tr>
+        <tr>
+          <th>PASSWORD*</th>
+          <td><input type="password" class="form-control zn-cell-input" name="userPassword" placeholder="Your Password" autocomplete="off" ng-model="user.password" ></td>
+        </tr>
+        <tr>
+          <td class="zn-status-display zn-text-align-right" colspan="2">
+            <div ng-show="form.$submitted || form.userFullName.$touched || form.userEmail.$touched || form.userPassword.$touched">
+              <span ng-show="form.userFullName.$error.required">Name required.</span>
+              <!-- <span ng-show="form.userEmail.$pending.emailnotduplicated">Checking if this email is duplicated...</span>
+              <span ng-show="form.userEmail.$error.emailnotduplicated">Email duplicated.</span> -->
+              <span ng-show="form.userEmail.$error.required">Email required.</span>
+              <span ng-show="form.userEmail.$error.email">This is not a valid email.</span>
+              <span ng-show="form.userPassword.$error.required">Password required.</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div style="height:39px;"/>
+
+      <div><input type="submit" class="zn-button-submit zn-width-100" value="SAVE CHANGES"/></div>
+      <div style="height:10px;"/>
+
+    </fieldset>
+  </form>
+  </div>
+</div>
+</treasure-overlay-spinner>

@@ -1,0 +1,80 @@
+{
+  "name": "ParentCategory",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_parent_category"
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "required": false
+    },
+    "container": {
+      "type": "string",
+      "required": true
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "created_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    },
+    "updated_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "subCategories": {
+      "type": "hasMany",
+      "model": "SubCategory",
+      "foreignKey": "parent_id"
+    },
+    "images": {
+      "type": "hasMany",
+      "model": "Image",
+      "polymorphic": {
+        "as": "target",
+        "foreignKey": "target_id",
+        "discriminator": "target_type"
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

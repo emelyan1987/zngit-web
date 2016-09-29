@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "ZngitDB",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "ZngitDB",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "ZngitDB",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "ZngitDB",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "ZngitDB",
+    "public": false
+  },
+  "Email": {
+    "dataSource": "ZngitEmail"
+  },
+  "Actor": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "ParentCategory": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "SubCategory": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Shop": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Customer": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "RentalItem": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Image": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "BookItem": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Address": {
+    "dataSource": "ZngitDB",
+    "public": false,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Balance": {
+    "dataSource": "ZngitDB",
+    "public": false,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Withdraw": {
+    "dataSource": "ZngitDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Container": {
+    "dataSource": "storage",
+    "public": true
+  }
+}

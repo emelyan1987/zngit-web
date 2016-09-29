@@ -1,0 +1,83 @@
+<div class="zn-dialog" align="center">
+  <div class="zn-title">Add an address</div>
+
+  <div style="width:100%; max-width:468px;">
+    <form name="form" ng-submit="continue()">
+    <fieldset ng-disabled="submitting">
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">ADDRESS LINE</th>
+          <td style="width:70%;max-width:292.5px;"><div style="line-height:20px;">{{currentAddress}}</div></td>
+        </tr>
+      </table>
+
+      <div style="height:48px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">STREET</th>
+          <td style="width:70%;max-width:292.5px;"><input type="text" class="form-control zn-cell-input" name="street" placeholder="" autocomplete="off" required ng-model="street" ></td>
+        </tr>
+      </table>
+
+      <div style="height:8px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">CITY</th>
+          <td style="width:70%;max-width:292.5px;"><input type="text" class="form-control zn-cell-input" name="city" placeholder="" autocomplete="off" required ng-model="city" ></td>
+        </tr>
+      </table>
+
+      <div style="height:8px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">STATE</th>
+          <td style="width:70%;max-width:292.5px;"><input type="text" class="form-control zn-cell-input" name="state" placeholder="" autocomplete="off" required ng-model="state" ></td>
+        </tr>
+      </table>
+
+      <div style="height:8px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">ZIP</th>
+          <td style="width:70%;max-width:292.5px;"><input type="text" class="form-control zn-cell-input" name="zip" placeholder="" autocomplete="off" required ng-model="zip" ></td>
+        </tr>
+      </table>
+
+      <div style="height:8px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="min-width:100px;">COUNTRY</th>
+          <td style="width:70%;max-width:292.5px;">
+            <select class="form-control zn-cell-input" ng-model="country" ng-options="country.name for country in countries track by country.code">
+              <option ng-repeat="country in countries" value="{{country.name}}" ng-selected="{{country.name}}=='United States'">{{country.name}}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <div style="height:50px;">
+        <div class="zn-status-display zn-text-align-right" ng-show="form.$submitted">
+          <span ng-show="form.street.$error.required">Street required.</span>
+          <span ng-show="form.city.$error.required">City required.</span>
+          <span ng-show="form.state.$error.required">State required.</span>
+          <span ng-show="form.zip.$error.required">Zip code required.</span>
+          <span ng-show="form.country.$error.required">Country required.</span>
+        </div>
+      </div>
+
+      <input type="button" class="zn-button-submit zn-width-100" value="CANCEL" ng-click="closeThisDialog()"/>
+      <input type="submit" class="zn-button-submit zn-width-100" value="CONTINUE"/>
+      <div style="height:20px;"/>
+      <div class="zn-status-display" ng-show="submitting"><img src="res/images/loading_gray.gif" width="16px" height="16px"/>&nbsp;&nbsp;Requesting...</div>
+
+    </fieldset>
+  </form>
+  </div>
+
+</div>

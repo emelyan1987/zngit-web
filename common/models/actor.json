@@ -1,0 +1,140 @@
+{
+  "name": "Actor",
+  "base": "User",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_user"
+    }
+  },
+  "properties": {
+    "fullname": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "comments": "A:Administrator, S:Shop Owner, C:Customer"
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "comments": "1: deleted customer?"
+    },
+    "transaction_id": {
+      "type": "number",
+      "comments": "last transaction id"
+    },
+    "transaction_time": {
+      "type": "number",
+      "comments": "last transaction time"
+    },
+    "social_type": {
+      "type": "string",
+      "comments": "facebook,twitter,google..."
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bookItems": {
+      "type": "hasMany",
+      "model": "BookItem",
+      "foreignKey": "renter_id"
+    },
+    "shop": {
+      "type": "hasOne",
+      "model": "Shop",
+      "foreignKey": "owner_id"
+    },
+    "shops": {
+      "type": "hasMany",
+      "model": "Shop",
+      "foreignKey": "customer_id",
+      "through": "Customer",
+      "keyThrough": "shop_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "count"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "ShopOwner",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__get__shop"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "create",
+        "login",
+        "logout",
+        "signupWithFacebook",
+        "loginWithFacebook"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Administrator",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "UserOwner",
+      "permission": "ALLOW",
+      "property": [
+        "updateAttributes", "upsert"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "loginByAccessToken"
+    }
+  ],
+  "methods": {}
+}

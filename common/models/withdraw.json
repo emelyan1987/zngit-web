@@ -1,0 +1,61 @@
+{
+  "name": "Withdraw",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "schema": "LOOPBACK",
+      "table": "zn_withdraw"
+    }
+  },
+  "properties": {
+    "amount": {
+      "type": "number",
+      "dataType": "double",
+      "dataPrecision": 2,
+      "required": true,
+      "comments": "The amount withdrawed"
+    },
+    "destination": {
+      "type": "string",
+      "required": true,
+      "comments": "Bank account name ending into 3355"
+    },
+    "created_time": {
+      "type": "number",
+      "required": true,
+      "comments": "seconds from 1970-1-1"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "shop": {
+      "type": "belongsTo",
+      "model": "Shop",
+      "foreignKey": "shop_id"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "ShopOwner",
+      "permission": "ALLOW",
+      "property": "withdraw"
+    }],
+  "methods": {}
+}

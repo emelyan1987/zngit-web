@@ -1,0 +1,104 @@
+<div class="zn-header1">
+  <a href="/s/#/transaction">{{title}}</a>&nbsp;&nbsp;&nbsp;<img src="./res/images/nav_arrow.png"/>&nbsp;&nbsp;&nbsp;Transaction Details
+</div>
+<treasure-overlay-spinner active='spinner.active'>
+<div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+  <div style="width:100%; max-width:466px; margin:auto;" align="center">
+      <div style="height:45px;"/>
+      <span class="zn-label-sub-title zn-text-align-left">TRANSACTION ID #{{bookItem.id}}</span>
+
+      <div style="height:17px;"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">CUSTOMER NAME</th>
+          <td>{{bookItem.renter.fullname}}</td>
+        </tr>
+        <tr>
+          <th>CUSTOMER EMAIL</th>
+          <td>{{bookItem.renter.email}}</td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">DATE RENTED</th>
+          <td>{{bookItem.created_time | dateFilterWithSeconds:'M/d/yyyy'}}</td>
+        </tr>
+        <tr>
+          <th>TIME</th>
+          <td>{{bookItem.created_time | timeFilterWithSeconds}}</td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">ITEMS RENTED</th>
+          <td>{{bookItem.quantity}}&nbsp;x&nbsp;{{bookItem.rentalItem.name}}</td>
+        </tr>
+        <tr>
+          <th>PURCHASE AMOUNT</th>
+          <td>{{bookItem.amount | currency}}</td>
+        </tr>
+        <tr>
+          <th>PAYMENT</th>
+          <td>Paid with {{bookItem.card_brand}} ending in {{bookItem.card_last4}}</td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">SHOP ADDRESS</th>
+          <td>{{shop._address.street}} {{shop._address.city}}, {{shop._address.state}} {{shop._address.zip}}</td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">SHOP NAME</th>
+          <td>{{shop.name}}</td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">RENTAL PERIOD</th>
+          <td>{{bookItem.type==1 ? 'Daily' : 'Hourly'}}</td>
+        </tr>
+        <tr>
+          <th>PICKUP DATE</th>
+          <td>{{bookItem.pickup_date | dateFilterWithString:'EEE, MMM d'}}</td>
+        </tr>
+        <tr>
+          <th>{{bookItem.type==1 ? 'RETURN DATE' : 'HOURS'}}</th>
+          <td><span ng-if="bookItem.type==1">{{bookItem.return_date | dateFilterWithString:'EEE, MMM d'}}</span><span ng-if="bookItem.type==0">{{bookItem.rental_hours}}&nbsp;hours</span></td>
+        </tr>
+      </table>
+
+      <div class="zn-separator"/>
+
+      <table class="zn-table zn-width-100">
+        <tr>
+          <th style="width:140px;">PICKUP TIME</th>
+          <td>{{bookItem.pickup_time | timeFilterWithMinutes}}</td>
+        </tr>
+      </table>
+
+      <div style="height:39px;" ng-show="isRefundable"/>
+      <input type="button" class="zn-button-submit zn-width-100" value="CANCEL AND REFUND TRANSATION" ng-click="refund()" ng-show="isRefundable"/>
+
+      <div style="height:20px;"/>
+
+  </div>
+</div>
+</treasure-overlay-spinner>

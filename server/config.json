@@ -1,0 +1,45 @@
+{
+  "restApiRoot": "/api",
+  "host": "0.0.0.0",
+  "port": 3000,
+  "remoting": {
+    "context": {
+      "enableHttpContext": true
+    },
+    "rest": {
+      "normalizeHttpPath": false,
+      "xml": false
+    },
+    "json": {
+      "strict": false,
+      "limit": "100kb"
+    },
+    "urlencoded": {
+      "extended": true,
+      "limit": "100kb"
+    },
+    "cors": false,
+    "errorHandler": {
+      "disableStackTrace": false
+    }
+  },
+  "legacyExplorer": false,
+
+  "zngit": {
+    "host": "192.168.1.70",
+    "email": "Customerservice@zngit.com",
+    "stripe_recipient": {
+      "name": "Zngit Customer Service",
+      "type": "individual",
+      "bank_account": {
+        "country": "us",
+        "routing_number": "110000000",
+        "account_number": "000123456789"
+      },
+      "tax_id": "000000000"
+    },
+    "stripe_publish_key": "stripe_publish_key",
+    "stripe_secret_key": "stripe_secret_key",
+    "facebook_password": "fb-zngit2016"
+  }
+}

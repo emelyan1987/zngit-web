@@ -1,0 +1,26 @@
+@keyframes bounce {
+  10% {
+    transform:translateY(-35px);
+    width: 50px;
+    height: 50px;
+  }
+  40% {
+    transform:translateY(10px);
+    width: 35px;
+    height: 35px;
+  }
+  70% {
+    transform:translateY(-15px);
+    width: 45px;
+    height: 45px;
+  }
+  100% {
+    transform:translateY(0px);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.bounce {
+  animation: bounce 1.6s  infinite;
+}

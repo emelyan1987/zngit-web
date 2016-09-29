@@ -1,0 +1,43 @@
+<div class="zn-header1">
+  Manage Categories
+</div>
+<treasure-overlay-spinner active='spinner.active'>
+<div class="zn-content" ng-style="resizeWithOffset(122)" resize>
+  <div style="height:10px;"/>
+  <div class="zn-label-sub-title zn-text-align-left">PARENT CATEGORIES</div>
+  <div style="height:10px;"/>
+  <button type="button" class="zn-button-submit zn-width-100" ng-click="editParentCategory()"><span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">ADD A PARENT CATEGORY</span></button>
+  <div style="height:15px;"/>
+
+
+    <div style="width:100%;overflow-x:auto;white-space:nowrap;">
+        <div ng-repeat="category in parentCategories" style="margin-right:15px;display:inline-block;">
+            <div class="zn-thumbnail" ng-click="selectParentCategory(category)" ng-class="{'zn-thumbnail-selected':selectedParentCategory.id==category.id}">
+              <!-- <ui-image data-src="{{category.images.length>0?category.images[0].url:'res/images/placeholder.png'}}" data-title="{{category.name}}"></ui-image> -->
+              <img src="{{category.images.length>0?category.images[0].url:'res/images/placeholder.png'}}" />
+              <div>{{category.name}}</div>
+            </div>
+            <div style="padding-left:10px;">
+              <button type="button" class="zn-button-link-orange" ng-click="editParentCategory(category)">
+                <span class="zn-signal-icon">next</span>&nbsp;<span style="vertical-align:top;">EDIT THIS CATEGORY</span>
+              </button>
+            </div>
+        </div>
+    </div>
+
+  <div style="height:20px;"/>
+  <div class="zn-label-sub-title zn-text-align-left">SUB CATEGORIES</div>
+  <div style="height:10px;"/>
+  <button type="button" class="zn-button-submit zn-width-100" ng-click="editSubCategory()" ng-disabled="!selectedParentCategory"><span class="zn-signal-icon">plus</span>&nbsp;<span style="vertical-align:top;">ADD A SUB CATEGORY</span></button>
+  <div style="height:15px;"/>
+    <div style="width:100%;overflow-x:auto;white-space:nowrap;">
+      <div ng-repeat="category in selectedParentCategory.subCategories" style="margin-right:15px;display:inline-block;">
+          <div class="zn-thumbnail" ng-click="editSubCategory(category)">
+            <!-- <ui-image data-src="{{category.images.length>0?category.images[0].url:'res/images/placeholder.png'}}" data-title="{{category.name}}"></ui-image> -->
+            <img src="{{category.images.length>0?category.images[0].url:'res/images/placeholder.png'}}" />
+            <div>{{category.name}}</div>
+          </div>
+      </div>
+    </div>
+</div>
+</treasure-overlay-spinner>
